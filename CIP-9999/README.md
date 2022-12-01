@@ -112,7 +112,7 @@ Inactive    | The statement is deemed obsolete or withdrawn for another reason. 
 
 #### Categories
 
-As defined in [CIP-0001 > Categories](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/README.md#categories).
+As defined in [CIP-0001][#categories].
 
 ### The CPS Process
 
@@ -144,7 +144,7 @@ Of course, a solution may only partially address a problem. In this case, one ca
 
 ### Editors
 
-As defined in [CIP-0001 > Editors](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/README.md#editors).
+As defined in [CIP-0001][#editors].
 
 ## Rationale: how does this CIP achieve its goals?
 
