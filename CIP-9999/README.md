@@ -112,7 +112,7 @@ Inactive    | The statement is deemed obsolete or withdrawn for another reason. 
 
 #### Categories
 
-As defined in [CIP-0001][#categories].
+As defined in [CIP-0001][].
 
 ### The CPS Process
 
