@@ -57,7 +57,7 @@ Field                | Description
 `CPS`                | CPS number (without leading 0), or "\?" before being assigned
 `Title`              | A succinct and descriptive title
 `Status`             | Open \| Solved \| Inactive (..._reason_...)
-`Category`           | One registered or well-known category covering one area of the ecosystem.
+`Category`           | One registered or well-known [category](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/README.md#categories) covering one area of the ecosystem.
 `Authors`            | A list of authors' real names and email addresses (e.g. John Doe <john.doe@email.domain>)
 `Proposed Solutions` | A list of CIPs addressing the problem, if any
 `Discussions`        | A list of links where major technical discussions regarding this CPS happened. Links should include any discussion before submission, a link to the pull request that created the CPS, and any pull request that modifies it.
@@ -112,7 +112,7 @@ Inactive    | The statement is deemed obsolete or withdrawn for another reason. 
 
 #### Categories
 
-As defined in [CIP-0001][].
+As defined in [CIP-0001 > Categories](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/README.md#categories).
 
 ### The CPS Process
 
@@ -144,7 +144,7 @@ Of course, a solution may only partially address a problem. In this case, one ca
 
 ### Editors
 
-As defined in [CIP-0001][].
+As defined in [CIP-0001 > Editors](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/README.md#editors).
 
 ## Rationale: how does this CIP achieve its goals?
 
