@@ -1,6 +1,6 @@
 ---
 CIP: ?
-Title: Distributed Artifact Token Metadata Standard
+Title: Distributed Artifact Token Metadata
 Category: Tokens
 Status: Proposed
 Authors:
