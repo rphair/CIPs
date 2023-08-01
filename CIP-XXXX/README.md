@@ -1,5 +1,5 @@
 ---
-CIP: ?
+CIP: 98
 Title: Distributed Artifact Token Metadata
 Category: Tokens
 Status: Proposed
