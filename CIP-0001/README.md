@@ -427,12 +427,10 @@ The missions of an editor include, but aren't exclusively limited to, any of the
 
 Current editors are listed here below:
 
-| Robert Phair <br/> [@rphair][] | Ryan Williams <br/> [@Ryun1][] | Thomas Vellekoop <br/> [@perturbing][] |
-| ---                            | ---                            | ---                                    |
-
-[@rphair]: https://github.com/rphair
-[@Ryun1]: https://github.com/Ryun1
-[@perturbing]: https://github.com/perturbing
+| Robert Phair     | [@rphair](https://github.com/rphair)         |
+| Ryan Williams    | [@Ryun1](https://github.com/Ryun1)           |
+| Thomas Vellekoop | [@perturbing](https://github.com/perturbing) |
+| Sebastian Nagel  | [@ch1bo](https://github.com/ch1bo)           |
 
 Emeritus editors:
 - Frederic Johnson - [@crptmppt](https://github.com/crptmppt)
