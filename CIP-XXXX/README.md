@@ -85,8 +85,9 @@ id      =  minor       & 0xFF
 ```
 
 #### Field rules
+<!-- rphair: This process should work efficiently in time, space & personnel; CIP-0010 updates have a path to expedite them & unless hung up on editor attention somehow they don't even have to wait until the next biweekly meeting; if popular demand would create a tag like this one: https://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change%22 -->
 
-- A producer MUST set `scheme` to `0`. Values `1`, `2` and `3` arhttps://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change%22e reserved for future CIPs. A future CIP defining a new scheme MAY keep the layout of bits 29 - 0 and use the new scheme value only as a fresh identifier space, or MAY redefine those bits entirely. A future CIP MUST NOT change the meaning of `scheme = 0`.
+- A producer MUST set `scheme` to `0`. Values `1`, `2` and `3` are reserved for future CIPs. A future CIP defining a new scheme MAY keep the layout of bits 29 - 0 and use the new scheme value only as a fresh identifier space, or MAY redefine those bits entirely. A future CIP MUST NOT change the meaning of `scheme = 0`.
 - A producer MUST set `id` to a value it is entitled to use under the [registry](#registry) for `scheme = 0`.
 - A producer MAY set `payload` to any 22-bit value whose meaning is documented in the payload specification linked from its registry entry. A producer whose registry entry has no payload specification MUST set `payload` to `0`.
 - The resulting `minor` MUST be encoded as a CBOR `uint` and MUST NOT exceed `4294967295` (`0xFFFFFFFF`).
