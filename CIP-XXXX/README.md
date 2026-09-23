@@ -134,7 +134,7 @@ A value above `4294967295` is not a valid `minor` under any scheme.
 
 #### Assignment
 
-<!-- rphair: Very much appreciated that this can be done without a lot of time, space, or personnel overhead.  It would work as well as CIP-0010 updates have worked... and if popular demand, the CIP editors can create another tag for it to help expedite these updates, like what we already have here: https://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change -->
+<!-- rphair: Very much appreciated that this can be done without a lot of time, space, or personnel overhead.  It would work as well as CIP-0010 updates have worked... and if popular demand, the CIP editors can create another tag for it to help expedite these updates, like what we already have here: https://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change%22 -->
 - Open a PR against `registry.json` only.
 - Eligibility: a node implementation that produces, or is about to produce, blocks on a public Cardano network (mainnet or a public testnet). One `id` per implementation, not per version.
 - Requester MAY propose a specific number in 1–254; otherwise editors assign. First come, first served; no meaning attached to the number.
