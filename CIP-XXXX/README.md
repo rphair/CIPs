@@ -246,7 +246,7 @@ Every block produced before this CIP carries a minor version that would decode t
   - [CIP-0005: Common Bech32 Prefixes](../CIP-0005)
   - [CIP-0010: Transaction Metadata Label Registry](../CIP-0010)
   - [CIP-0034: Chain ID Registry](../CIP-0034)
-  - [CIP-0067: Asset Name Label Registry](../CIP-0067).
+  - [CIP-0067: Asset Name Label Registry](../CIP-0067)
 - [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words](https://datatracker.ietf.org/doc/html/rfc8174).
 - [Gerolamo](https://github.com/HarmonicLabs/gerolamo), Harmonic Labs.
 - [Amaru](https://github.com/pragma-org/amaru), PRAGMA.
