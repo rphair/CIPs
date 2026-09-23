@@ -233,6 +233,7 @@ Every block produced before this CIP carries a minor version that would decode t
 - [ ] Reference decoder: a few lines in two languages, or a link to a shared test-vector file.
 <!-- rphair: capitalisation according to their own sites' typography *and* adding Adastat which from a CIP point of view has provided the most prompt & useful integrations: -->
 - [ ] Reach out to explorers (Cexplorer, PoolTool, Cardanoscan, AdaStat) and node teams before the PR is opened, per the CIP-0001 guidance that node teams should be polled during drafting.
+<!-- rphair: (re: 2nd half of previous line) This CIP-0001 guidance was written when Haskell was the only node & was intended to "save time" in the CIP process in a smaller world.  After the ecosystem big bang of the last 5 years, it remains a good guidance but *has not* been a _requirement_ for CIPs to be submitted: and sometimes can't even be counted on during the initial stages of PR review.  So yes of course get the node teams to chime in as much as possible, but keep in mind they may take longer to respond productively... and may not do to at all until they see a PR on the table. -->
 
 ## References
 
