@@ -22,9 +22,11 @@ Cardano has become a multi-implementation network. Blocks on mainnet have been p
 
 This CIP fixes a bit layout for the 32-bit field: an 8-bit implementation identifier, a 22-bit implementation-defined payload, and a 2-bit scheme version. It also establishes a machine-readable registry of identifiers in this repository with governing rules for assignment, update, and retirement. This is strictly voluntary, and requires no hard fork or changes in existing nodes.
 
-## Motivation: why is this CIP necessary?
+## Motivation: Why is this CIP necessary?   <!-- rphair: validator requires this capitalisation now -->
 
-For the full problem statement, read [CPS-0036](https://github.com/cardano-foundation/CIPs/pull/1260). In summary, while client diversity becomes a critical metric for Cardano's health, there is currently nothing that attributes individual blocks to a particular implementation. While there has been much discussion on the subject, including a [stalled proposal](https://github.com/cardano-foundation/CIPs/pull/1157), there is already a de facto convention on chain. [Dingo](https://github.com/blinklabs-io/dingo) has begun producing blocks using the minor version `69`, [Geromalo](https://github.com/harmoniclabs/gerolamo) has produced blocks with minor version `67`, and other node implementations have agreed to follow that approach. Without a registry, there could be collisions between implementations, making that metric useless. Introducing a standard encoding scheme makes it simple for anyone to read the on-chain data. The proposed `CIP-0180` stalled because it required a new ledger era. Importantly, this approach avoids a fork completely.
+<!-- rphair: There is still a chance the same thing that happened to the CIP-0180 candidate will happen to the CPS-0036 candidate: for social reasons it could well end up deadlocked or closed from abandonment; or, based on prior difficulties, the participation threshold could be lower than it would take to drive it through critical peer review & get merged.  So it will be safest to refer to it as a "draft" (here & everywhere in the document) since it might stay that way for a long time, or indefinitely.  (Note even if abandoned it could be continued by other advocate(s): e.g. you or Markus.) -->
+<!-- rphair: "de facto" is italicised in English typography: https://www.merriam-webster.com/dictionary/de%20facto -->
+For the full problem statement, read [the CPS-0036 draft](https://github.com/cardano-foundation/CIPs/pull/1260). In summary, while client diversity becomes a critical metric for Cardano's health, there is currently nothing that attributes individual blocks to a particular implementation. While there has been much discussion on the subject, including a [stalled proposal](https://github.com/cardano-foundation/CIPs/pull/1157), there is already a _de facto_ convention on chain. [Dingo](https://github.com/blinklabs-io/dingo) has begun producing blocks using the minor version `69`, [Geromalo](https://github.com/harmoniclabs/gerolamo) has produced blocks with minor version `67`, and other node implementations have agreed to follow that approach. Without a registry, there could be collisions between implementations, making that metric useless. Introducing a standard encoding scheme makes it simple for anyone to read the on-chain data. The proposed `CIP-0180` stalled because it required a new ledger era. Importantly, this approach avoids a fork completely.
 
 ## Specification
 
@@ -84,7 +86,7 @@ id      =  minor       & 0xFF
 
 #### Field rules
 
-- A producer MUST set `scheme` to `0`. Values `1`, `2` and `3` are reserved for future CIPs. A future CIP defining a new scheme MAY keep the layout of bits 29 - 0 and use the new scheme value only as a fresh identifier space, or MAY redefine those bits entirely. A future CIP MUST NOT change the meaning of `scheme = 0`.
+- A producer MUST set `scheme` to `0`. Values `1`, `2` and `3` arhttps://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change%22e reserved for future CIPs. A future CIP defining a new scheme MAY keep the layout of bits 29 - 0 and use the new scheme value only as a fresh identifier space, or MAY redefine those bits entirely. A future CIP MUST NOT change the meaning of `scheme = 0`.
 - A producer MUST set `id` to a value it is entitled to use under the [registry](#registry) for `scheme = 0`.
 - A producer MAY set `payload` to any 22-bit value whose meaning is documented in the payload specification linked from its registry entry. A producer whose registry entry has no payload specification MUST set `payload` to `0`.
 - The resulting `minor` MUST be encoded as a CBOR `uint` and MUST NOT exceed `4294967295` (`0xFFFFFFFF`).
@@ -133,6 +135,7 @@ A value above `4294967295` is not a valid `minor` under any scheme.
 
 #### Assignment
 
+<!-- rphair: Very much appreciated that this can be done without a lot of time, space, or personnel overhead.  It would work as well as CIP-0010 updates have worked... and if popular demand, the CIP editors can create another tag for it to help expedite these updates, like what we already have here: https://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change -->
 - Open a PR against `registry.json` only.
 - Eligibility: a node implementation that produces, or is about to produce, blocks on a public Cardano network (mainnet or a public testnet). One `id` per implementation, not per version.
 - Requester MAY propose a specific number in 1–254; otherwise editors assign. First come, first served; no meaning attached to the number.
@@ -161,7 +164,7 @@ A value above `4294967295` is not a valid `minor` under any scheme.
 - The identifier space is versioned by the same bits. Each scheme has its own range of identifiers in `registry.json`, so a new scheme can be introduced purely to obtain more identifiers, without changing the layout.
 - The registry is versioned by git history. Entries are append-or-amend; never delete.
 
-## Rationale: how does this CIP achieve its goals?
+## Rationale: How does this CIP achieve its goals?   <!-- rphair: validator requires this capitalisation now -->
 
 ### Why the header minor version
 
@@ -180,6 +183,7 @@ The `id` needs to be large enough that no plausible number of block-producing im
 The low-order byte preserves backwards compatibility. Dingo and Gerolamo have produced blocks that use a plain integer. Under this scheme, those values would decode as identifier `69` and `67` respectively, with an empty payload and scheme `0`. It also means that an explorer that already displays the decimal value of the minor version shows the identifier, and a reader who knows the registry can resolve it easily.
 
 ### Why a scheme version
+<!-- rphair: This seems like a future-proof approach to me but I'll try to remember to bring it up in `Triage` review after posting: so we can introduce it as an early review question & get confirmation that this is the right way to start out. -->
 
 Two bits at the top of the field let a future CIP redefine the remaining thirty without ambiguity. Every value emitted so far has these bits clear, so this preserves backwards compatibility. Bitcoin's BIP 9 reserves the top bits of the block version field for the same reason.
 
@@ -216,25 +220,33 @@ An operator who does not want to disclose their software could simply emit `0`, 
 Every block produced before this CIP carries a minor version that would decode to a valid, and informative identifer. Producers that do not adopt this CIP continue to emit `0`, and are thus counted as unsignalled correctly.
 
 ## Path to Active
+<!-- rphair: The boxes ticked below will be true *at the point this document is merged*, though not the "present" time of the peer review period... i.e. we are reviewing *the document that will be merged* and so the tickbox status is for _then_, not _now_... -->
 
 ### Acceptance Criteria
 
-- [ ] `registry.json` merged with initial entries and at least one additional implementation registered through the PR process.
+- [x] `registry.json` merged with initial entries and at least one additional implementation registered through the PR process.
 - [ ] At least two independent implementations producing blocks on mainnet or a public testnet with their registered identifier.
 - [ ] At least one public explorer or dashboard decoding the identifier per this CIP.
 
 ### Implementation Plan
 
-- [ ] Publish `registry.json` and `registry.schema.json` alongside this CIP.
+- [x] Publish `registry.json` and `registry.schema.json` alongside this CIP.
 - [ ] Reference decoder: a few lines in two languages, or a link to a shared test-vector file.
-- [ ] Reach out to explorers (cexplorer, pooltool, Cardanoscan) and node teams before the PR is opened, per the CIP-0001 guidance that node teams should be polled during drafting.
+<!-- rphair: capitalisation according to their own sites' typography *and* adding Adastat which from a CIP point of view has provided the most prompt & useful integrations: -->
+- [ ] Reach out to explorers (Cexplorer, PoolTool, Cardanoscan, AdaStat) and node teams before the PR is opened, per the CIP-0001 guidance that node teams should be polled during drafting.
 
 ## References
 
-- [CPS-0036: Voluntary Block Producer Software Signalling](https://github.com/cardano-foundation/CIPs/pull/1260), Alex Moser and Matthias Benkort.
+<!-- rphair: same stipulation as above; in case this remains a "draft" indefinitely: or perhaps merged after _this_ CIP: -->
+- [CPS-0036 draft: Voluntary Block Producer Software Signalling](https://github.com/cardano-foundation/CIPs/pull/1260), Alex Moser and Matthias Benkort.
 - [CIP-0180 draft: Block Producer Identification](https://github.com/cardano-foundation/CIPs/pull/1157), Samuel Leathers and Adam Dean.
 - [CIP-0001: CIP Process](../CIP-0001), [CIP-9999: Cardano Problem Statements](../CIP-9999).
-- Registry precedents: [CIP-0005: Common Bech32 Prefixes](../CIP-0005), [CIP-0010: Transaction Metadata Label Registry](../CIP-0010), [CIP-0034: Chain ID Registry](../CIP-0034), [CIP-0067: Asset Name Label Registry](../CIP-0067).
+<!-- rphair: simply breaking into multiple lines for readability (no content changes): -->
+- Registry precedents:
+  - [CIP-0005: Common Bech32 Prefixes](../CIP-0005)
+  - [CIP-0010: Transaction Metadata Label Registry](../CIP-0010)
+  - [CIP-0034: Chain ID Registry](../CIP-0034)
+  - [CIP-0067: Asset Name Label Registry](../CIP-0067).
 - [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words](https://datatracker.ietf.org/doc/html/rfc8174).
 - [Gerolamo](https://github.com/HarmonicLabs/gerolamo), Harmonic Labs.
 - [Amaru](https://github.com/pragma-org/amaru), PRAGMA.
@@ -244,7 +256,8 @@ Every block produced before this CIP carries a minor version that would decode t
 ## Acknowledgements
 
 - Samuel Leathers and Adam Dean for the CIP-0180 draft.
-- Alex Moser and Matthias Benkort for CPS-0036.
+<!-- rphair: one last time: -->
+- Alex Moser and Matthias Benkort for the CPS-0036 draft.
 - Matthias Benkort for proposing to fit identification into the minor version without a breaking change.
 - Markus Gufler for the compact-encoding counter-proposal, the abuse analysis, and the operator privacy interviews.
 - Alexey Kuleshevich for clarifying the ledger semantics of the header protocol version.
