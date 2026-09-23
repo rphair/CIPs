@@ -251,7 +251,7 @@ Every block produced before this CIP carries a minor version that would decode t
 - Robert Phair  for the deliberate vs indeliberate non-participation requirement and editorial guidance.
 - Martin Lang for pressing on extensibility and hard-fork minor version semantics.
 - Blink Labs (Dingo) and Harmonic Labs (Gerolamo) for initial implementations.
-- 
+
 ## Copyright
 
 This CIP is licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
