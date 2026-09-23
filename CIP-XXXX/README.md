@@ -85,7 +85,6 @@ id      =  minor       & 0xFF
 ```
 
 #### Field rules
-<!-- rphair: This process should work efficiently in time, space & personnel; CIP-0010 updates have a path to expedite them & unless hung up on editor attention somehow they don't even have to wait until the next biweekly meeting; if popular demand would create a tag like this one: https://github.com/cardano-foundation/CIPs/pulls?q=is%3Apr%20label%3A%22CIP-0010%3A%20registry%20change%22 -->
 
 - A producer MUST set `scheme` to `0`. Values `1`, `2` and `3` are reserved for future CIPs. A future CIP defining a new scheme MAY keep the layout of bits 29 - 0 and use the new scheme value only as a fresh identifier space, or MAY redefine those bits entirely. A future CIP MUST NOT change the meaning of `scheme = 0`.
 - A producer MUST set `id` to a value it is entitled to use under the [registry](#registry) for `scheme = 0`.
@@ -132,7 +131,6 @@ A value above `4294967295` is not a valid `minor` under any scheme.
 - Entry fields (see schema): `scheme`, `id`, `name`, `status` (`active` | `retired` | `reserved`), `maintainer`, `repository`, `payload_specification` (URL or `null`), `registered` (date), `retired` (date or `null`), `description`.
 - The registry is partitioned by `scheme`. An identifier is the pair `(scheme, id)`, and that pair is unique. The same `id` under two different schemes refers to two unrelated entries. This CIP defines only entries with `scheme = 0`; a future CIP that defines a new scheme adds entries under that scheme to the same file.
 - The schema cannot enforce uniqueness of `(scheme, id)` across entries; editors check it at review. Consider a small CI script later.
-
 
 #### Assignment
 
